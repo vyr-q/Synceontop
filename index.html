@@ -257,6 +257,8 @@ a::before{
 
     font-size:18px;
 
+    text-decoration:none;
+
     z-index:100;
 
     transition:all .3s ease;
@@ -289,6 +291,73 @@ a::before{
 
 /* HOA HOVER */
 .left-hoa:hover{
+    transform:translateY(-50%) scale(1.06);
+
+    background:rgba(18,18,28,0.92);
+
+    border:1px solid rgba(90,150,255,0.18);
+
+    box-shadow:
+        0 0 14px rgba(255,255,255,0.03),
+        0 0 30px rgba(0,110,255,0.14),
+        0 20px 55px rgba(0,50,160,0.18);
+}
+
+/* OSINT BUTTON */
+.right-osint{
+    position:fixed;
+
+    right:30px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    padding:16px 30px;
+
+    border-radius:18px;
+
+    background:rgba(10,10,16,0.82);
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    color:white;
+
+    font-size:18px;
+
+    text-decoration:none;
+
+    z-index:100;
+
+    transition:all .3s ease;
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,0.02),
+        0 12px 32px rgba(0,70,200,0.12);
+}
+
+/* OSINT UNDERGLOW */
+.right-osint::after{
+    content:"";
+
+    position:absolute;
+
+    left:15%;
+    bottom:-10px;
+
+    width:70%;
+    height:20px;
+
+    background:rgba(0,100,255,0.25);
+
+    filter:blur(18px);
+
+    opacity:0.6;
+
+    z-index:-1;
+}
+
+/* OSINT HOVER */
+.right-osint:hover{
     transform:translateY(-50%) scale(1.06);
 
     background:rgba(18,18,28,0.92);
@@ -357,6 +426,11 @@ NIKO (Beloved Admin Member)
 <!-- HOA BUTTON -->
 <a href="Ehoedox.html" class="left-hoa">
 HOA
+</a>
+
+<!-- OSINT BUTTON -->
+<a href="osint.html" class="right-osint">
+OSINT LINKS
 </a>
 
 <script>
