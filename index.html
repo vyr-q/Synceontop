@@ -1,20 +1,20 @@
+```html
+<!DOCTYPE html>
 <html>
 <head>
-    <audio id="bgAudio" autoplay loop>
-        <source src="https://codehs.com/uploads/00c56e8513c73218707be82f6ccd8fd6" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    
-    <!-- Glowing Snow Canvas -->
-<canvas id="snowCanvas"></canvas>
-    
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
     <title>$ynce</title>
+
     <link rel="icon" type="image/x-icon" href="https://codehs.com/uploads/b526f2da01a37b3bd2cb1babbdc0e3d2">
+
     <style>
-        body {
-            <canvas id="snowCanvas"></canvas>
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             background: black;
             color: white;
             font-family: monospace;
@@ -23,17 +23,34 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            position: relative;
         }
+
+        /* GLOWING SNOW CANVAS */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* MAIN CONTENT */
         .container {
+            position: relative;
+            z-index: 2;
             text-align: center;
             line-height: 1.4;
         }
+
         pre {
             font-size: 12px;
-            margin: 0 auto;           /* Better centering */
-            display: inline-block;    /* Important for pre tag centering */
-            text-align: left;         /* Keep ASCII shape */
-            white-space: pre;         /* Preserve formatting */
+            margin: 0 auto;
+            display: inline-block;
+            text-align: left;
+            white-space: pre;
         }
 
         /* LINKS */
@@ -45,6 +62,7 @@
             position: relative;
             margin: 6px 0;
         }
+
         a:hover {
             text-decoration: underline;
         }
@@ -59,28 +77,53 @@
             width: 100%;
             overflow: hidden;
         }
+
         a::before {
             color: white;
             animation: glitchTop 1.5s infinite linear alternate-reverse;
         }
+
         a::after {
             color: white;
             animation: glitchBottom 1.2s infinite linear alternate-reverse;
         }
 
         @keyframes glitchTop {
-            0% { transform: translate(0,0); opacity: 0.7; }
-            25% { transform: translate(-2px,-1px); }
-            50% { transform: translate(2px,1px); }
-            75% { transform: translate(-1px,2px); }
-            100% { transform: translate(0,0); }
+            0% {
+                transform: translate(0,0);
+                opacity: 0.7;
+            }
+            25% {
+                transform: translate(-2px,-1px);
+            }
+            50% {
+                transform: translate(2px,1px);
+            }
+            75% {
+                transform: translate(-1px,2px);
+            }
+            100% {
+                transform: translate(0,0);
+            }
         }
+
         @keyframes glitchBottom {
-            0% { transform: translate(0,0); opacity: 0.7; }
-            25% { transform: translate(2px,2px); }
-            50% { transform: translate(-2px,1px); }
-            75% { transform: translate(1px,-2px); }
-            100% { transform: translate(0,0); }
+            0% {
+                transform: translate(0,0);
+                opacity: 0.7;
+            }
+            25% {
+                transform: translate(2px,2px);
+            }
+            50% {
+                transform: translate(-2px,1px);
+            }
+            75% {
+                transform: translate(1px,-2px);
+            }
+            100% {
+                transform: translate(0,0);
+            }
         }
 
         /* LEFT HOA BUTTON */
@@ -99,6 +142,7 @@
             z-index: 100;
             transition: all 0.3s;
         }
+
         .left-hoa:hover {
             background: white;
             color: black;
@@ -106,9 +150,21 @@
         }
     </style>
 </head>
+
 <body>
+
+    <!-- AUDIO -->
+    <audio id="bgAudio" autoplay loop>
+        <source src="https://codehs.com/uploads/00c56e8513c73218707be82f6ccd8fd6" type="audio/mpeg">
+    </audio>
+
+    <!-- SNOW CANVAS -->
+    <canvas id="snowCanvas"></canvas>
+
+    <!-- MAIN CONTENT -->
     <div class="container">
-        <pre>
+
+<pre>
    _                          
   | |                        
  / __)_   _ _ __   ___ ___   
@@ -117,107 +173,43 @@
   |_| \__, |_| |_|\___\___|  
         __/ |                
        |___/             
-        </pre>
+</pre>
 
         <a href="https://guns.lol/ayti" target="_blank" data-text="coco (founder)">
-           coco (founder)
+            coco (founder)
         </a>
+
         <a href="http://doxbin.com/user/CatToken" target="_blank" data-text="xyraha (Beloved Admin Member)">
-           xyraha (Beloved Admin Member)
+            xyraha (Beloved Admin Member)
         </a>
+
         <a href="https://guns.lol/vyrq" target="_blank" data-text="Zay (Beloved Admin Member)">
-           Zay (Beloved Admin Member)
+            Zay (Beloved Admin Member)
         </a>
+
         <a href="https://guns.lol/not_niko" target="_blank" data-text="NIKO (Beloved Admin Member)">
-           
+            NIKO (Beloved Admin Member)
         </a>
+
     </div>
-    
-    <script>        
-<script>
-// Glowing Snow Effect
-const canvas = document.getElementById('snowCanvas');
-const ctx = canvas.getContext('2d');
 
-let particles = [];
-const characters = ['❄', '❅', '❆', '•', '✧', '⭒'];
+    <!-- HOA BUTTON -->
+    <a href="Ehoedox.html" target="_blank" class="left-hoa">
+        HOA
+    </a>
 
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-
-class Particle {
-    constructor() {
-        this.reset();
-    }
-    
-    reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height - canvas.height;
-        this.size = Math.random() * 7 + 4;
-        this.speed = Math.random() * 2.8 + 1.2;
-        this.char = characters[Math.floor(Math.random() * characters.length)];
-        this.opacity = Math.random() * 0.7 + 0.5;
-        this.angle = Math.random() * 360;
-        this.wobble = Math.random() * 0.8 + 0.4;
-        this.glow = Math.random() * 15 + 10; // Glow intensity
-    }
-    
-    update() {
-        this.y += this.speed;
-        this.angle += 1.5;
-        this.x += Math.sin(this.angle * 0.03) * this.wobble;
-        
-        if (this.y > canvas.height + 50) {
-            this.reset();
-        }
-    }
-    
-    draw() {
-        ctx.save();
-        ctx.globalAlpha = this.opacity;
-        ctx.shadowColor = '#ffffff';      // White glow
-        ctx.shadowBlur = this.glow;
-        ctx.fillStyle = '#ffffff';
-        ctx.font = `${this.size}px Arial`;
-        ctx.fillText(this.char, this.x, this.y);
-        ctx.restore();
-    }
-}
-
-function initParticles(count) {
-    particles = [];
-    for (let i = 0; i < count; i++) {
-        particles.push(new Particle());
-    }
-}
-
+    <!-- GLOWING SNOW SCRIPT -->
 function animate() {
-    // Semi-transparent trail for smooth effect
-    ctx.fillStyle = 'rgba(10, 10, 10, 0.12)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     for (let i = 0; i < particles.length; i++) {
         particles[i].update();
         particles[i].draw();
     }
-    
+
     requestAnimationFrame(animate);
 }
 
-// Initialize
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-initParticles(180);   // Number of snowflakes
-animate();
-</script>
-</script>
-
-
-    <!-- Left HOA Button -->
-    <a href="Ehoedox.html" target="_blank" class="left-hoa">
-        HOA
-    </a>
 </body>
 </html>
+```
