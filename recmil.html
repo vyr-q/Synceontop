@@ -58,32 +58,37 @@
     }
 
     /* IMPROVED TEXT BOX - Better for ASCII & pasted text */
-    .text-box {
-        width: 780px;                    /* Slightly wider for your ASCII */
-        max-height: 55vh;
-        background: rgba(0, 0, 0, 0.8);
-        border: 2px solid #ff3333;
-        box-shadow: 0 0 30px #ff3333,
-                    0 0 60px rgba(255, 50, 50, 0.4);
-        padding: 25px;
-        overflow-y: auto;
-        text-align: left;
-        line-height: 1.55;
-        font-size: 15px;
-        color: #ffdddd;
-        scrollbar-width: thin;
-        scrollbar-color: #ff4444 #222;
-        white-space: pre-wrap;           /* Important */
-        word-break: break-all;
-        font-family: 'Courier New', monospace;
-    }
+  .text-box {
+    width: fit-content;          /* expands with content */
+    max-width: 95vw;             /* prevents going off screen */
+    min-width: 780px;
 
-    .text-box::-webkit-scrollbar {
-        width: 8px;
-    }
-    .text-box::-webkit-scrollbar-thumb {
-        background: #ff4444;
-        border-radius: 10px;
+    max-height: 55vh;
+
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #ff3333;
+
+    box-shadow:
+        0 0 30px #ff3333,
+        0 0 60px rgba(255, 50, 50, 0.4);
+
+    padding: 25px;
+
+    overflow: auto;              /* horizontal + vertical scroll */
+
+    text-align: left;
+    line-height: 1.55;
+    font-size: 15px;
+    color: #ffdddd;
+
+    white-space: pre;            /* keeps ASCII formatting */
+    word-break: normal;          /* stops breaking text */
+
+    font-family: 'Courier New', monospace;
+
+    scrollbar-width: thin;
+    scrollbar-color: #ff4444 #222;
+}
     }
 </style>
 	
