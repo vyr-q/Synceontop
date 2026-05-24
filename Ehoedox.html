@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$ynce</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: black;
+            color: white;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            text-shadow: 0 0 20px #ff0000,
+                         0 0 40px #ff0000,
+                         0 0 60px #ff3333;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .glow-button {
+            padding: 16px 40px;
+            font-size: 22px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: white;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ff0000;
+            text-decoration: none;
+            text-align: center;
+            width: 320px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px #ff0000,
+                        0 0 40px rgba(255, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glow-button:hover {
+            background: rgba(255, 0, 0, 0.15);
+            color: #ff6666;
+            box-shadow: 0 0 35px #ff0000,
+                        0 0 70px rgba(255, 0, 0, 0.9);
+            transform: scale(1.05);
+        }
+
+        /* Red underglow */
+        .glow-button::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            width: 70%;
+            height: 10px;
+            background: #ff0000;
+            filter: blur(12px);
+            opacity: 0.8;
+            transform: translateX(-50%);
+        }
+
+        .glow-button:hover::after {
+            height: 14px;
+            filter: blur(16px);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>$YNCE</h1>
+
+    <div class="button-container">
+        <a href="dasherafn.html" class="glow-button">Dashers Dox</a>
+        <a href="Techgangster.html" class="glow-button">Techgangsters Dox</a>
+        <a href="Ageplayr.html" class="glow-button">E-hoe/ageplayer</a>
+        <a href="#" class="glow-button">MEMBERS</a>
+        <a href="#" class="glow-button">DOX ARCHIVE</a>
+    </div>
+
+    <!-- Audio Player -->
+    <audio id="bgAudio" autoplay loop>
+        <source src="https://codehs.com/uploads/953f7bc0b332440505eb59d646f37189" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const audio = document.getElementById('bgAudio');
+        
+        // Try to play on page load
+        window.addEventListener('load', () => {
+            audio.volume = 0.6; // Adjust volume (0.0 - 1.0)
+            
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    // Autoplay blocked - common on mobile/desktop
+                    console.log("Autoplay prevented. Click any button to start music.");
+                    
+                    // Fallback: Start music when user clicks any button
+                    document.querySelectorAll('.glow-button').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            audio.play().catch(() => {});
+                        }, { once: true });
+                    });
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
