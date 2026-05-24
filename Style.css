@@ -48,3 +48,35 @@
     filter: blur(14px);
     opacity: 1;
 }
+
+.text-box {
+    width: fit-content;          /* expands with content */
+    max-width: 95vw;             /* prevents going off screen */
+    min-width: 780px;
+
+    max-height: 55vh;
+
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #ff3333;
+
+    box-shadow:
+        0 0 30px #ff3333,
+        0 0 60px rgba(255, 50, 50, 0.4);
+
+    padding: 25px;
+
+    overflow: auto;              /* horizontal + vertical scroll */
+
+    text-align: left;
+    line-height: 1.55;
+    font-size: 15px;
+    color: #ffdddd;
+
+    white-space: pre;            /* keeps ASCII formatting */
+    word-break: normal;          /* stops breaking text */
+
+    font-family: 'Courier New', monospace;
+
+    scrollbar-width: thin;
+    scrollbar-color: #ff4444 #222;
+}
