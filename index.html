@@ -1,168 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$ynce</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>$ynce</title>
 
-    <link rel="icon" type="image/x-icon"
-        href="https://codehs.com/uploads/b526f2da01a37b3bd2cb1babbdc0e3d2">
+<link rel="icon" type="image/x-icon"
+href="https://codehs.com/uploads/b526f2da01a37b3bd2cb1babbdc0e3d2">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
 
-        body {
-            background: #000;
-            color: white;
-            font-family: monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* SNOW CANVAS */
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
+body{
+    background:
+        radial-gradient(circle at bottom,
+        rgba(0,40,120,0.08),
+        transparent 45%),
+        #000;
 
-        /* MAIN CONTENT */
-        .container {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            line-height: 1.4;
-        }
+    color:white;
+    font-family:monospace;
 
-        pre {
-            font-size: 12px;
-            margin: 0 auto 20px auto;
-            display: inline-block;
-            text-align: left;
-            white-space: pre;
-        }
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-        /* LINKS */
-        a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            font-size: 16px;
-            position: relative;
-            margin: 8px 0;
-        }
+    height:100vh;
+    overflow:hidden;
+    position:relative;
+}
 
-        a:hover {
-            text-decoration: underline;
-        }
+/* DARK BLUE BACKGROUND GLOW */
+body::before{
+    content:"";
+    position:fixed;
 
-        /* GLITCH EFFECT */
-        a::before,
-        a::after {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
+    bottom:-250px;
+    left:50%;
+    transform:translateX(-50%);
 
-        a::before {
-            color: rgba(255,255,255,0.7);
-            animation: glitchTop 1.5s infinite linear alternate-reverse;
-        }
+    width:1000px;
+    height:600px;
 
-        a::after {
-            color: rgba(255,255,255,0.5);
-            animation: glitchBottom 1.2s infinite linear alternate-reverse;
-        }
+    background:radial-gradient(circle,
+    rgba(0,80,255,0.14) 0%,
+    rgba(0,60,180,0.08) 35%,
+    transparent 70%);
 
-        @keyframes glitchTop {
-            0% {
-                transform: translate(0,0);
-            }
-            25% {
-                transform: translate(-2px,-1px);
-            }
-            50% {
-                transform: translate(2px,1px);
-            }
-            75% {
-                transform: translate(-1px,2px);
-            }
-            100% {
-                transform: translate(0,0);
-            }
-        }
+    filter:blur(100px);
 
-        @keyframes glitchBottom {
-            0% {
-                transform: translate(0,0);
-            }
-            25% {
-                transform: translate(2px,2px);
-            }
-            50% {
-                transform: translate(-2px,1px);
-            }
-            75% {
-                transform: translate(1px,-2px);
-            }
-            100% {
-                transform: translate(0,0);
-            }
-        }
+    pointer-events:none;
+    z-index:0;
+}
 
-        /* HOA BUTTON */
-        .left-hoa {
-            position: fixed;
-            left: 30px;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 12px 20px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid white;
-            color: white;
-            font-family: monospace;
-            font-size: 18px;
-            text-decoration: none;
-            z-index: 100;
-            transition: 0.3s;
-        }
+/* SNOW */
+canvas{
+    position:fixed;
+    inset:0;
 
-        .left-hoa:hover {
-            background: white;
-            color: black;
-            transform: translateY(-50%) scale(1.05);
-        }
-    </style>
+    width:100%;
+    height:100%;
+
+    pointer-events:none;
+    z-index:0;
+}
+
+/* MAIN CONTAINER */
+.container{
+    position:relative;
+    z-index:2;
+
+    text-align:center;
+    line-height:1.5;
+
+    padding:40px;
+
+    border-radius:24px;
+
+    background:rgba(8,8,12,0.55);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    box-shadow:
+        0 0 20px rgba(255,255,255,0.02),
+        0 0 60px rgba(0,80,255,0.08),
+        0 20px 60px rgba(0,40,120,0.16);
+}
+
+/* ASCII LOGO */
+pre{
+    font-size:13px;
+
+    margin:0 auto 25px auto;
+
+    display:inline-block;
+    text-align:left;
+
+    color:white;
+
+    text-shadow:
+        0 0 6px rgba(255,255,255,0.25),
+        0 0 14px rgba(0,100,255,0.22);
+}
+
+/* BUTTONS */
+a{
+    position:relative;
+
+    display:block;
+
+    margin:14px 0;
+
+    padding:16px 24px;
+
+    border-radius:16px;
+
+    color:white;
+    text-decoration:none;
+
+    font-size:15px;
+    letter-spacing:0.5px;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,0.02);
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease,
+        border .25s ease;
+
+    box-shadow:
+        0 0 8px rgba(255,255,255,0.02),
+        0 8px 24px rgba(0,60,180,0.10);
+}
+
+/* BLUE UNDERGLOW */
+a::after{
+    content:"";
+
+    position:absolute;
+
+    left:12%;
+    bottom:-10px;
+
+    width:76%;
+    height:18px;
+
+    background:rgba(0,90,255,0.22);
+
+    filter:blur(18px);
+
+    opacity:0.55;
+
+    z-index:-1;
+
+    transition:.3s;
+}
+
+/* BUTTON HOVER */
+a:hover{
+    transform:translateY(-3px) scale(1.02);
+
+    background:rgba(255,255,255,0.04);
+
+    border:1px solid rgba(80,140,255,0.20);
+
+    box-shadow:
+        0 0 12px rgba(255,255,255,0.03),
+        0 0 28px rgba(0,100,255,0.12),
+        0 18px 45px rgba(0,50,160,0.18);
+
+    text-shadow:
+        0 0 6px rgba(255,255,255,0.20),
+        0 0 12px rgba(0,120,255,0.28);
+}
+
+a:hover::after{
+    opacity:0.8;
+    filter:blur(22px);
+}
+
+/* GLITCH EFFECT */
+a::before{
+    content:attr(data-text);
+
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:rgba(255,255,255,0.08);
+
+    pointer-events:none;
+
+    animation:glitch 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch{
+
+    0%{
+        transform:translate(0px,0px);
+    }
+
+    20%{
+        transform:translate(-1px,1px);
+    }
+
+    40%{
+        transform:translate(1px,-1px);
+    }
+
+    60%{
+        transform:translate(-2px,0px);
+    }
+
+    80%{
+        transform:translate(2px,1px);
+    }
+
+    100%{
+        transform:translate(0px,0px);
+    }
+}
+
+/* HOA BUTTON */
+.left-hoa{
+    position:fixed;
+
+    left:30px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    padding:16px 30px;
+
+    border-radius:18px;
+
+    background:rgba(10,10,16,0.82);
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    color:white;
+
+    font-size:18px;
+
+    z-index:100;
+
+    transition:all .3s ease;
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,0.02),
+        0 12px 32px rgba(0,70,200,0.12);
+}
+
+/* HOA UNDERGLOW */
+.left-hoa::after{
+    content:"";
+
+    position:absolute;
+
+    left:15%;
+    bottom:-10px;
+
+    width:70%;
+    height:20px;
+
+    background:rgba(0,100,255,0.25);
+
+    filter:blur(18px);
+
+    opacity:0.6;
+
+    z-index:-1;
+}
+
+/* HOA HOVER */
+.left-hoa:hover{
+    transform:translateY(-50%) scale(1.06);
+
+    background:rgba(18,18,28,0.92);
+
+    border:1px solid rgba(90,150,255,0.18);
+
+    box-shadow:
+        0 0 14px rgba(255,255,255,0.03),
+        0 0 30px rgba(0,110,255,0.14),
+        0 20px 55px rgba(0,50,160,0.18);
+}
+
+</style>
 </head>
 
 <body>
 
-    <!-- AUDIO -->
-    <audio autoplay loop>
-        <source src="https://codehs.com/uploads/00c56e8513c73218707be82f6ccd8fd6" type="audio/mpeg">
-    </audio>
+<!-- AUDIO -->
+<audio autoplay loop>
+<source src="https://codehs.com/uploads/00c56e8513c73218707be82f6ccd8fd6" type="audio/mpeg">
+</audio>
 
-    <!-- SNOW CANVAS -->
-    <canvas id="snowCanvas"></canvas>
+<!-- SNOW -->
+<canvas id="snowCanvas"></canvas>
 
-    <!-- MAIN CONTENT -->
-    <div class="container">
+<!-- MAIN CONTENT -->
+<div class="container">
 
 <pre>
    _                          
@@ -175,133 +328,150 @@
        |___/             
 </pre>
 
-        <a href="https://guns.lol/ayti"
-           target="_blank"
-           data-text="coco (founder)">
-            coco (founder)
-        </a>
+<a href="https://guns.lol/ayti"
+target="_blank"
+data-text="coco (founder)">
+coco (founder)
+</a>
 
-        <a href="https://guns.lol/vyrq"
-           target="_blank"
-           data-text="Zay (Beloved Admin Member)">
-            Zay (Beloved Admin Member)
-        </a>
-        
-         <a href="http://doxbin.com/user/CatToken" target="_blank" data-text="xyraha (Beloved Admin Member)"> 
-             xyraha (Beloved Admin Member) </a>
-        
-        <a href="https://guns.lol/not_niko"target="_blank"data-text="NIKO (Beloved Admin Member)">
-            NIKO (Beloved Admin Member)
-        </a>
+<a href="https://guns.lol/vyrq"
+target="_blank"
+data-text="Zay (Beloved Admin Member)">
+Zay (Beloved Admin Member)
+</a>
 
-    </div>
+<a href="http://doxbin.com/user/CatToken"
+target="_blank"
+data-text="xyraha (Beloved Admin Member)">
+xyraha (Beloved Admin Member)
+</a>
 
-    <!-- HOA BUTTON -->
-    <a href="Ehoedox.html" class="left-hoa">
-        HOA
-    </a>
-  
-    <!-- BASIC OSINT BUTTON -->
+<a href="https://guns.lol/not_niko"
+target="_blank"
+data-text="NIKO (Beloved Admin Member)">
+NIKO (Beloved Admin Member)
+</a>
 
-    <!-- SNOW SCRIPT -->
-    <script>
-        const canvas = document.getElementById('snowCanvas');
-        const ctx = canvas.getContext('2d');
+</div>
 
-        let particles = [];
+<!-- HOA BUTTON -->
+<a href="Ehoedox.html" class="left-hoa">
+HOA
+</a>
 
-        const characters = [
-            '❄',
-            '❅',
-            '❆',
-            '•',
-            '✧',
-            '⭒'
+<script>
+
+const canvas = document.getElementById('snowCanvas');
+const ctx = canvas.getContext('2d');
+
+let particles = [];
+
+const characters = [
+'❄',
+'❅',
+'❆',
+'•',
+'✧',
+'⭒'
+];
+
+function resizeCanvas(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+class Particle{
+
+    constructor(){
+        this.reset();
+    }
+
+    reset(){
+
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height - canvas.height;
+
+        this.size = Math.random() * 7 + 4;
+
+        this.speed = Math.random() * 2.8 + 1.2;
+
+        this.char = characters[
+            Math.floor(Math.random() * characters.length)
         ];
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        this.opacity = Math.random() * 0.7 + 0.5;
+
+        this.angle = Math.random() * 360;
+
+        this.wobble = Math.random() * 0.8 + 0.4;
+
+        this.glow = Math.random() * 12 + 6;
+    }
+
+    update(){
+
+        this.y += this.speed;
+
+        this.angle += 1.5;
+
+        this.x += Math.sin(this.angle * 0.03) * this.wobble;
+
+        if(this.y > canvas.height + 50){
+            this.reset();
         }
+    }
 
-        class Particle {
-            constructor() {
-                this.reset();
-            }
+    draw(){
 
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height - canvas.height;
+        ctx.save();
 
-                this.size = Math.random() * 7 + 4;
-                this.speed = Math.random() * 2.8 + 1.2;
+        ctx.globalAlpha = this.opacity;
 
-                this.char = characters[
-                    Math.floor(Math.random() * characters.length)
-                ];
+        ctx.shadowColor = '#7aa2ff';
+        ctx.shadowBlur = this.glow;
 
-                this.opacity = Math.random() * 0.7 + 0.5;
-                this.angle = Math.random() * 360;
-                this.wobble = Math.random() * 0.8 + 0.4;
-                this.glow = Math.random() * 15 + 10;
-            }
+        ctx.fillStyle = '#ffffff';
 
-            update() {
-                this.y += this.speed;
-                this.angle += 1.5;
+        ctx.font = `${this.size}px Arial`;
 
-                this.x += Math.sin(this.angle * 0.03) * this.wobble;
+        ctx.fillText(this.char, this.x, this.y);
 
-                if (this.y > canvas.height + 50) {
-                    this.reset();
-                }
-            }
+        ctx.restore();
+    }
+}
 
-            draw() {
-                ctx.save();
+function initParticles(count){
 
-                ctx.globalAlpha = this.opacity;
+    particles = [];
 
-                ctx.shadowColor = '#ffffff';
-                ctx.shadowBlur = this.glow;
+    for(let i = 0; i < count; i++){
+        particles.push(new Particle());
+    }
+}
 
-                ctx.fillStyle = '#ffffff';
+function animate(){
 
-                ctx.font = `${this.size}px Arial`;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 
-                ctx.fillText(this.char, this.x, this.y);
+    for(let i = 0; i < particles.length; i++){
 
-                ctx.restore();
-            }
-        }
+        particles[i].update();
 
-        function initParticles(count) {
-            particles = [];
+        particles[i].draw();
+    }
 
-            for (let i = 0; i < count; i++) {
-                particles.push(new Particle());
-            }
-        }
+    requestAnimationFrame(animate);
+}
 
-        function animate() {
+window.addEventListener('resize', resizeCanvas);
 
-            /* REMOVES TRAIL EFFECT */
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+resizeCanvas();
 
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-            }
+initParticles(180);
 
-            requestAnimationFrame(animate);
-        }
+animate();
 
-        window.addEventListener('resize', resizeCanvas);
-
-        resizeCanvas();
-        initParticles(180);
-        animate();
-    </script>
+</script>
 
 </body>
 </html>
