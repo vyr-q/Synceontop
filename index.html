@@ -1,11 +1,12 @@
-```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>$ynce</title>
 
-    <link rel="icon" type="image/x-icon" href="https://codehs.com/uploads/b526f2da01a37b3bd2cb1babbdc0e3d2">
+    <link rel="icon" type="image/x-icon"
+        href="https://codehs.com/uploads/b526f2da01a37b3bd2cb1babbdc0e3d2">
 
     <style>
         * {
@@ -15,7 +16,7 @@
         }
 
         body {
-            background: black;
+            background: #000;
             color: white;
             font-family: monospace;
             display: flex;
@@ -26,7 +27,7 @@
             position: relative;
         }
 
-        /* GLOWING SNOW CANVAS */
+        /* SNOW CANVAS */
         canvas {
             position: fixed;
             top: 0;
@@ -47,7 +48,7 @@
 
         pre {
             font-size: 12px;
-            margin: 0 auto;
+            margin: 0 auto 20px auto;
             display: inline-block;
             text-align: left;
             white-space: pre;
@@ -60,7 +61,7 @@
             display: block;
             font-size: 16px;
             position: relative;
-            margin: 6px 0;
+            margin: 8px 0;
         }
 
         a:hover {
@@ -76,22 +77,22 @@
             top: 0;
             width: 100%;
             overflow: hidden;
+            pointer-events: none;
         }
 
         a::before {
-            color: white;
+            color: rgba(255,255,255,0.7);
             animation: glitchTop 1.5s infinite linear alternate-reverse;
         }
 
         a::after {
-            color: white;
+            color: rgba(255,255,255,0.5);
             animation: glitchBottom 1.2s infinite linear alternate-reverse;
         }
 
         @keyframes glitchTop {
             0% {
                 transform: translate(0,0);
-                opacity: 0.7;
             }
             25% {
                 transform: translate(-2px,-1px);
@@ -110,7 +111,6 @@
         @keyframes glitchBottom {
             0% {
                 transform: translate(0,0);
-                opacity: 0.7;
             }
             25% {
                 transform: translate(2px,2px);
@@ -126,7 +126,7 @@
             }
         }
 
-        /* LEFT HOA BUTTON */
+        /* HOA BUTTON */
         .left-hoa {
             position: fixed;
             left: 30px;
@@ -140,7 +140,7 @@
             font-size: 18px;
             text-decoration: none;
             z-index: 100;
-            transition: all 0.3s;
+            transition: 0.3s;
         }
 
         .left-hoa:hover {
@@ -154,7 +154,7 @@
 <body>
 
     <!-- AUDIO -->
-    <audio id="bgAudio" autoplay loop>
+    <audio autoplay loop>
         <source src="https://codehs.com/uploads/00c56e8513c73218707be82f6ccd8fd6" type="audio/mpeg">
     </audio>
 
@@ -175,41 +175,130 @@
        |___/             
 </pre>
 
-        <a href="https://guns.lol/ayti" target="_blank" data-text="coco (founder)">
+        <a href="https://guns.lol/ayti"
+           target="_blank"
+           data-text="coco (founder)">
             coco (founder)
         </a>
 
-        <a href="http://doxbin.com/user/CatToken" target="_blank" data-text="xyraha (Beloved Admin Member)">
-            xyraha (Beloved Admin Member)
-        </a>
-
-        <a href="https://guns.lol/vyrq" target="_blank" data-text="Zay (Beloved Admin Member)">
+        <a href="https://guns.lol/vyrq"
+           target="_blank"
+           data-text="Zay (Beloved Admin Member)">
             Zay (Beloved Admin Member)
         </a>
 
-        <a href="https://guns.lol/not_niko" target="_blank" data-text="NIKO (Beloved Admin Member)">
+        <a href="https://guns.lol/not_niko"
+           target="_blank"
+           data-text="NIKO (Beloved Admin Member)">
             NIKO (Beloved Admin Member)
         </a>
 
     </div>
 
     <!-- HOA BUTTON -->
-    <a href="Ehoedox.html" target="_blank" class="left-hoa">
+    <a href="Ehoedox.html" class="left-hoa">
         HOA
     </a>
 
-    <!-- GLOWING SNOW SCRIPT -->
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    <!-- SNOW SCRIPT -->
+    <script>
+        const canvas = document.getElementById('snowCanvas');
+        const ctx = canvas.getContext('2d');
 
-    for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
-    }
+        let particles = [];
 
-    requestAnimationFrame(animate);
-}
+        const characters = [
+            '❄',
+            '❅',
+            '❆',
+            '•',
+            '✧',
+            '⭒'
+        ];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+
+                this.size = Math.random() * 7 + 4;
+                this.speed = Math.random() * 2.8 + 1.2;
+
+                this.char = characters[
+                    Math.floor(Math.random() * characters.length)
+                ];
+
+                this.opacity = Math.random() * 0.7 + 0.5;
+                this.angle = Math.random() * 360;
+                this.wobble = Math.random() * 0.8 + 0.4;
+                this.glow = Math.random() * 15 + 10;
+            }
+
+            update() {
+                this.y += this.speed;
+                this.angle += 1.5;
+
+                this.x += Math.sin(this.angle * 0.03) * this.wobble;
+
+                if (this.y > canvas.height + 50) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+
+                ctx.globalAlpha = this.opacity;
+
+                ctx.shadowColor = '#ffffff';
+                ctx.shadowBlur = this.glow;
+
+                ctx.fillStyle = '#ffffff';
+
+                ctx.font = `${this.size}px Arial`;
+
+                ctx.fillText(this.char, this.x, this.y);
+
+                ctx.restore();
+            }
+        }
+
+        function initParticles(count) {
+            particles = [];
+
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+
+            /* REMOVES TRAIL EFFECT */
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+
+        resizeCanvas();
+        initParticles(180);
+        animate();
+    </script>
 
 </body>
 </html>
-```
