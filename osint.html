@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OSINT HUB</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#05070d;
+    color:white;
+    font-family:monospace;
+
+    min-height:100vh;
+
+    overflow:hidden;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+}
+
+/* BACKGROUND GLOW */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    bottom:-200px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:900px;
+    height:500px;
+
+    background:radial-gradient(circle,
+    rgba(0,120,255,0.12) 0%,
+    rgba(0,80,180,0.06) 35%,
+    transparent 70%);
+
+    filter:blur(80px);
+
+    pointer-events:none;
+}
+
+/* STAR CANVAS */
+
+canvas{
+    position:fixed;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    pointer-events:none;
+
+    z-index:0;
+}
+
+/* MAIN UI */
+
+.container{
+
+    position:relative;
+
+    z-index:2;
+
+    width:90%;
+    max-width:1100px;
+
+    padding:40px;
+
+    border-radius:28px;
+
+    background:rgba(8,10,18,0.72);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    box-shadow:
+    0 0 20px rgba(255,255,255,0.02),
+    0 0 60px rgba(0,80,255,0.08),
+    0 25px 60px rgba(0,0,0,0.45);
+}
+
+.title{
+
+    text-align:center;
+
+    margin-bottom:35px;
+}
+
+.title h1{
+
+    font-size:52px;
+
+    letter-spacing:8px;
+
+    text-shadow:
+    0 0 8px rgba(255,255,255,0.2),
+    0 0 20px rgba(0,100,255,0.25);
+}
+
+.title p{
+
+    margin-top:10px;
+
+    opacity:0.7;
+
+    font-size:14px;
+}
+
+/* GRID */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:22px;
+}
+
+/* CARDS */
+
+.card{
+
+    padding:22px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.02);
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    box-shadow:
+    0 0 10px rgba(255,255,255,0.02),
+    0 10px 30px rgba(0,0,0,0.3);
+
+    transition:.25s ease;
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+    border:1px solid rgba(0,120,255,0.18);
+
+    box-shadow:
+    0 0 20px rgba(0,100,255,0.08),
+    0 20px 40px rgba(0,0,0,0.4);
+}
+
+.card h2{
+
+    margin-bottom:18px;
+
+    font-size:20px;
+
+    letter-spacing:2px;
+}
+
+/* BUTTONS */
+
+.link-btn{
+
+    position:relative;
+
+    display:block;
+
+    margin:12px 0;
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    color:white;
+
+    text-decoration:none;
+
+    background:rgba(255,255,255,0.03);
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    transition:.22s ease;
+
+    overflow:hidden;
+}
+
+.link-btn::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:18%;
+    bottom:-8px;
+
+    width:64%;
+    height:12px;
+
+    background:rgba(0,100,255,0.22);
+
+    filter:blur(14px);
+
+    opacity:0.55;
+
+    transition:.25s ease;
+}
+
+.link-btn:hover{
+
+    transform:translateY(-2px);
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(0,120,255,0.18);
+
+    box-shadow:
+    0 0 12px rgba(0,120,255,0.08),
+    0 10px 22px rgba(0,0,0,0.3);
+}
+
+.link-btn:hover::after{
+
+    opacity:0.85;
+}
+
+/* SCROLL */
+
+.container{
+    overflow-y:auto;
+    max-height:90vh;
+}
+
+.container::-webkit-scrollbar{
+    width:6px;
+}
+
+.container::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,0.12);
+    border-radius:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="container">
+
+<div class="title">
+    <h1>OSINT HUB</h1>
+    <p>Research • Intelligence • Public Records</p>
+</div>
+
+<div class="grid">
+
+    <!-- OSINT -->
+
+    <div class="card">
+
+        <h2>OSINT</h2>
+
+        <a href="https://tracked.sh" target="_blank" class="link-btn">
+            tracked.sh
+        </a>
+
+        <a href="https://see-know.eu/" target="_blank" class="link-btn">
+            see-know.eu
+        </a>
+
+        <a href="https://cloudsint.net" target="_blank" class="link-btn">
+            cloudsint.net
+        </a>
+
+        <a href="https://osintleak.com/" target="_blank" class="link-btn">
+            osintleak.com
+        </a>
+
+        <a href="https://nosint.org" target="_blank" class="link-btn">
+            nosint.org
+        </a>
+
+    </div>
+
+    <!-- TOOLS -->
+
+    <div class="card">
+
+        <h2>TOOLS</h2>
+
+        <a href="https://intelx.io/" target="_blank" class="link-btn">
+            IntelX
+        </a>
+
+        <a href="https://www.csint.tools/" target="_blank" class="link-btn">
+            CSINT Tools
+        </a>
+
+    </div>
+
+    <!-- PEOPLE SEARCH -->
+
+    <div class="card">
+
+        <h2>PEOPLE SEARCH</h2>
+
+        <a href="https://www.fastpeoplesearch.com" target="_blank" class="link-btn">
+            FastPeopleSearch
+        </a>
+
+        <a href="https://www.truepeoplesearch.com/" target="_blank" class="link-btn">
+            TruePeopleSearch
+        </a>
+
+        <a href="https://thatsthem.com/" target="_blank" class="link-btn">
+            ThatsThem
+        </a>
+
+        <a href="https://neighbor.report/" target="_blank" class="link-btn">
+            Neighbor Report
+        </a>
+
+    </div>
+
+</div>
+</div>
+
+<script>
+
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+let stars = [];
+
+function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+class Star{
+
+    constructor(){
+        this.reset();
+    }
+
+    reset(){
+
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+
+        this.size = Math.random() * 2.2;
+
+        this.speed = Math.random() * 0.4 + 0.1;
+
+        this.opacity = Math.random() * 0.8 + 0.2;
+    }
+
+    update(){
+
+        this.y += this.speed;
+
+        if(this.y > canvas.height){
+
+            this.y = 0;
+            this.x = Math.random() * canvas.width;
+        }
+    }
+
+    draw(){
+
+        ctx.beginPath();
+
+        ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
+
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = "#7aa2ff";
+
+        ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+
+        ctx.fill();
+    }
+}
+
+function init(){
+
+    stars = [];
+
+    for(let i = 0; i < 180; i++){
+
+        stars.push(new Star());
+    }
+}
+
+function animate(){
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    stars.forEach(star => {
+
+        star.update();
+        star.draw();
+    });
+
+    requestAnimationFrame(animate);
+}
+
+window.addEventListener("resize", resize);
+
+resize();
+init();
+animate();
+
+</script>
+
+</body>
+</html>
