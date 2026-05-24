@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Authentication</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .auth-container {
+      max-width: 400px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .auth-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .auth-buttons button {
+      width: 100%;
+    }
+
+    .auth-buttons button.logout {
+      background-color: #dc3545;
+    }
+
+    .auth-buttons button.logout:hover {
+      background-color: #c82333;
+    }
+
+    .auth-buttons button.signup {
+      background-color: #28a745;
+    }
+
+    .auth-buttons button.signup:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-container">
+    <h2>Authentication</h2>
+    <div class="auth-buttons">
+      <button onclick="login()">Login</button>
+      <button onclick="signup()">Sign Up</button>
+      <button class="logout" onclick="logout()">Logout</button>
+    </div>
+
+    <div id="auth-form" style="display: none;">
+      <form id="login-form" style="display: none;">
+        <input type="text" id="login-username" placeholder="Username" required />
+        <input type="password" id="login-password" placeholder="Password" required />
+        <button type="button" onclick="submitLogin()">Login</button>
+      </form>
+
+      <form id="signup-form" style="display: none;">
+        <input type="text" id="signup-username" placeholder="Username" required />
+        <input type="password" id="signup-password" placeholder="Password" required />
+        <button type="button" onclick="submitSignup()">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let currentUser = null;
+
+    function login() {
+      document.getElementById("auth-form").style.display = "block";
+      document.getElementById("login-form").style.display = "block";
+      document.getElementById("signup-form").style.display = "none";
+    }
+
+    function signup() {
+      document.getElementById("auth-form").style.display = "block";
+      document.getElementById("signup-form").style.display = "block";
+      document.getElementById("login-form").style.display = "none";
+    }
+
+    function submitLogin() {
+      const username = document.getElementById("login-username").value;
+      const password = document.getElementById("login-password").value;
+
+      // Simple in-memory login (no backend)
+      if (username && password) {
+        currentUser = { username, password };
+        alert("Login successful!");
+        showDoxContent(); // Show your Dox content here
+      } else {
+        alert("Please enter both username and password.");
+      }
+    }
+
+    function submitSignup() {
+      const username = document.getElementById("signup-username").value;
+      const password = document.getElementById("signup-password").value;
+
+      if (username && password) {
+        currentUser = { username, password };
+        alert("Sign up successful!");
+        showDoxContent(); // Show your Dox content here
+      } else {
+        alert("Please enter both username and password.");
+      }
+    }
+
+    function logout() {
+      currentUser = null;
+      alert("Logged out successfully!");
+      hideDoxContent(); // Hide your Dox content here
+    }
+
+    function showDoxContent() {
+      // Replace this with your Dox content
+      document.write(`
+        <h2>Welcome, ${currentUser.username}!</h2>
+        <p>You are logged in. Here is your Dox content.</p>
+        <button onclick="logout()">Logout</button>
+      `);
+    }
+
+    function hideDoxContent() {
+      document.body.innerHTML = `
+        <div class="auth-container">
+          <h2>Authentication</h2>
+          <div class="auth-buttons">
+            <button onclick="login()">Login</button>
+            <button onclick="signup()">Sign Up</button>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
