@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>$ynce Subpage</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:
+    radial-gradient(circle at bottom,
+    rgba(120,0,0,0.10),
+    transparent 45%),
+    #050505;
+
+    color:white;
+
+    font-family:monospace;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    height:100vh;
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+/* BACKGROUND RED GLOW */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    bottom:-220px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:900px;
+    height:500px;
+
+    background:radial-gradient(circle,
+    rgba(255,0,0,0.12) 0%,
+    rgba(120,0,0,0.05) 35%,
+    transparent 70%);
+
+    filter:blur(80px);
+
+    pointer-events:none;
+}
+
+/* STARS */
+
+canvas{
+
+    position:fixed;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    pointer-events:none;
+
+    z-index:0;
+}
+
+/* MAIN UI */
+
+.container{
+
+    position:relative;
+
+    z-index:2;
+
+    width:90%;
+    max-width:600px;
+
+    padding:45px;
+
+    border-radius:28px;
+
+    background:rgba(10,10,10,0.72);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    text-align:center;
+
+    box-shadow:
+    0 0 20px rgba(255,255,255,0.02),
+    0 0 50px rgba(120,0,0,0.12),
+    0 20px 60px rgba(0,0,0,0.45);
+}
+
+/* TITLE */
+
+h1{
+
+    font-size:42px;
+
+    letter-spacing:5px;
+
+    margin-bottom:35px;
+
+    text-shadow:
+    0 0 8px rgba(255,0,0,0.25),
+    0 0 20px rgba(255,0,0,0.15);
+}
+
+/* BUTTON HOLDER */
+
+.buttons{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+}
+
+/* BUTTONS */
+
+.version-btn{
+
+    position:relative;
+
+    display:block;
+
+    padding:18px 24px;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-size:20px;
+
+    letter-spacing:1px;
+
+    background:rgba(255,255,255,0.02);
+
+    border:1px solid rgba(255,60,60,0.12);
+
+    transition:.25s ease;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 0 8px rgba(255,255,255,0.02),
+    0 8px 24px rgba(120,0,0,0.14);
+}
+
+/* SMALL RED UNDERGLOW */
+
+.version-btn::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:20%;
+    bottom:-8px;
+
+    width:60%;
+    height:14px;
+
+    background:rgba(255,40,40,0.24);
+
+    filter:blur(14px);
+
+    opacity:0.6;
+
+    transition:.25s ease;
+}
+
+/* HOVER */
+
+.version-btn:hover{
+
+    transform:translateY(-3px);
+
+    background:rgba(30,0,0,0.65);
+
+    border:1px solid rgba(255,80,80,0.20);
+
+    box-shadow:
+    0 0 16px rgba(255,0,0,0.08),
+    0 14px 32px rgba(120,0,0,0.18);
+}
+
+.version-btn:hover::after{
+
+    opacity:0.9;
+
+    filter:blur(18px);
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="container">
+
+    <h1>VERSIONS</h1>
+
+    <div class="buttons">
+
+        <a href="vyrq.html" class="version-btn">
+            Vyrqs Version
+        </a>
+
+        <a href="coco.html" class="version-btn">
+            cocos Version
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+let stars = [];
+
+function resize(){
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+class Star{
+
+    constructor(){
+
+        this.reset();
+    }
+
+    reset(){
+
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+
+        this.size = Math.random() * 2;
+
+        this.speed = Math.random() * 0.4 + 0.1;
+
+        this.opacity = Math.random() * 0.8 + 0.2;
+    }
+
+    update(){
+
+        this.y += this.speed;
+
+        if(this.y > canvas.height){
+
+            this.y = 0;
+            this.x = Math.random() * canvas.width;
+        }
+    }
+
+    draw(){
+
+        ctx.beginPath();
+
+        ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
+
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = "#ff4444";
+
+        ctx.arc(this.x,this.y,this.size,0,Math.PI * 2);
+
+        ctx.fill();
+    }
+}
+
+function init(){
+
+    stars = [];
+
+    for(let i = 0; i < 180; i++){
+
+        stars.push(new Star());
+    }
+}
+
+function animate(){
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    stars.forEach(star => {
+
+        star.update();
+        star.draw();
+    });
+
+    requestAnimationFrame(animate);
+}
+
+window.addEventListener("resize", resize);
+
+resize();
+init();
+animate();
+
+</script>
+
+</body>
+</html>
