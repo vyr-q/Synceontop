@@ -1,1 +1,416 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$ynce</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        background: #0a0a0a;
+        color: white;
+        font-family: 'Courier New', monospace;
+        overflow: hidden;
+        height: 100vh;
+        position: relative;
+    }
+
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        box-shadow: inset 0 0 80px rgba(255,255,255,0.15),
+                    inset 0 0 160px rgba(255,255,255,0.08);
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    canvas {
+        position: absolute;
+        top: 0; left: 0;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .content {
+        position: relative;
+        z-index: 3;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-top: 60px;
+    }
+
+    h1 {
+        font-size: 62px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 8px;
+        text-shadow: 0 0 20px #ffffff,
+                     0 0 40px #ffffff,
+                     0 0 60px #ff3333;
+    }
+
+    /* IMPROVED TEXT BOX - Better for ASCII & pasted text */
+    .text-box {
+        width: 780px;                    /* Slightly wider for your ASCII */
+        max-height: 55vh;
+        background: rgba(0, 0, 0, 0.8);
+        border: 2px solid #ff3333;
+        box-shadow: 0 0 30px #ff3333,
+                    0 0 60px rgba(255, 50, 50, 0.4);
+        padding: 25px;
+        overflow-y: auto;
+        text-align: left;
+        line-height: 1.55;
+        font-size: 15px;
+        color: #ffdddd;
+        scrollbar-width: thin;
+        scrollbar-color: #ff4444 #222;
+        white-space: pre-wrap;           /* Important */
+        word-break: break-all;
+        font-family: 'Courier New', monospace;
+    }
+
+    .text-box::-webkit-scrollbar {
+        width: 8px;
+    }
+    .text-box::-webkit-scrollbar-thumb {
+        background: #ff4444;
+        border-radius: 10px;
+    }
+</style>
+	
+</head>
+<body>
+
+    <!-- Red Falling DOS Snow -->
+    <canvas id="snowCanvas"></canvas>
+
+    <div class="content">
+        <h1>$YNCE</h1>
+
+        <audio id="bgMusic" autoplay loop>
+        <source src="https://codehs.com/uploads/a273962643d239acca5fc8e16d8efd72" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+
+        <!-- SCROLLABLE TEXT BOX -->
+        <div class="text-box">
+            <h2>Carson Ramon Jones</h2>
+      <pre>
+ 
+   _                                     
+ .--| |--.                                 
+| (_| |_\_| _   __  _ .--.   .---.  .---.  
+'_._| |_'. [ \ [  ][ `.-. | / /'`\]/ /__\\ 
+| \_| |_) | \ '/ /  | | | | | \__. | \__., 
+ '--|_|--'[\_:  /  [___||__]'.___.' '.__.' 
+           \__.'   		
+                      <> coco <> zay 
+					  
+                ╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+                ║ $ynce  ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓ [     AirPort  ] ║
+                ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝                                                                                                                  
+                                                                   We would like to thank you for boarding onto $yNcE Airlines Dylan Jones.                                                                                                                                                
+            ______                                                                                                                                 
+            _\ _~-\___                                                                                                    
+    =  = ==(___$ynce__)                                                                                                                         
+                \_____\___________________,-~~~~~~~`-.._                              Captain: Coco                                               
+                /     o O o o o o O O o o o o o o O o  |\_                            Co-Captain: Zay                               
+                `~-.__        ___..----..                  )                               
+                      `---~~\___________/------------`````                              
+					  
+			    ╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+                ║ $ynce  ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓ [      AirPort ] ║
+                ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+					  
+Reason:		   
+25 year old man who dates minors while being unemployed with no degree and sits on vrchat dating minors  
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠄⠀⠄⢀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠊⠀⡀⠀⠀⠀⢂⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠒⢴⠀⠘⢛⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠤⣀⠰⠀⠀⢠⡄⠸⠉⠐⠁⠀⠀⠀⢠⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢠⡏⠀⢀⡌⣧⠀⠀⠈⠊⠀⠀⠀⠀⠀⠀⢀⠂⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠘⣇⠀⠈⠈⠁⠣⢀⠀⠀⠀⠀⠀⠀⡠⠐⠁⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠘⣣⠀⠀⠀⠀⢀⢩⡷⠶⠞⠛⠻⢷⣄⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡀⠀⢀⡴⠓⠀⠀⠀⠀⠀⠀⠀⢸⡆⠀⠀⠲⣦
+⠀⠀⠔⠋⠉⠑⡆⠀⠀⠀⣷⡴⠋⠀⠀⠀⠀⠀⠀⡋⠃⠀⢰⣧⢄⡀⢴⠏
+⠀⠘⡀⠀⠘⠓⠂⠀⠀⢀⡟⠁⠀⠀⠀⠀⠀⠀⠀⠉⠓⠃⠁⠀⠀⠈⠀⠀
+⠀⠀⠙⠦⢀⣀⠀⠀⣴⣿⠟⠃⠈⠉⠛⠢⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢀⣾⠃⠀⠀⡠⢶⡄⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢠⡟⢉⠀⠀⠀⠳⣀⣀⡠⠎⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⢠⠛⠀⠈⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    
+⠀⠀⠀⠀⠀⣴⠃⠀⠀⣈⣀⠀⠀⢀⡤⠢⡀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢿⡀⠀⢸⡁⣄⣳⣄⠈⠚⠂⣸⣴⠉⠁⠉⢆⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠈⠢⠄⣀⣉⡿⠋⡿⣿⡒⠘⠁⠙⠼⠇⠀⡸⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠉⠁⠀⠰⡇⠈⠻⠶⣄⣀⣀⣠⠴⠁⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠁⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣠⣤⡀⠀⠀⠀⠀⠀⠀⣼⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⡞⠁⣠⣸⠀⠀⠀⠀⢀⡼⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠹⣆⡈⠁⠀⠀⣀⠔⠙⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠉⠛⠛⠃⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+                ╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+                ║ $ynce  ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓ [ 1x02 Personal ] ║
+                ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+
+                    ➤ Full Name: Dylan Ramon Jones
+                    ➤ Address: 595 Stonebriar Way SW Atlanta GA 30331
+                    ➤ Age: 25
+					➤ Gender: Male
+					
+                    ➤ Numbers: 404‑629‑3788
+                               └── 856‑232‑8981 
+							       248‑594‑9181
+								   856‑346‑1310
+								   856‑258‑4439
+								   404‑828‑7747
+								   706‑549‑4264
+								   502‑253‑4669
+								   404‑257‑6521
+								   404‑629‑2846
+								   770‑542‑9836
+								   856‑465‑4707
+
+                    ➤ Emails Addresses: 
+                                        └── jdjones3254h89@comcast.net
+                                          └── 05gameboydylan@gmail.com
+
+                ╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+                ║ $ynce  ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓ [ 1x03 Socials ] ║
+                ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+
+                    ➤ Linkedin:
+                        └── Username: dylan-jones-24302b365
+                            └── Account: https://www.linkedin.com/in/dylan-jones-24302b365/
+							Experience: Brin Glass Company
+
+                    ➤ Vrchat:
+                        └── Username: carsonWorld05 aade
+                            └── Account: https://vrchat.com/home/user/usr_53ee30ca-03c8-4c76-83ec-0ef43ebdaade
+
+                ╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+                ║ $ynce  ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓ [ 1x07 Family ] ║
+                ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+				
+				
+                    ➤ Full Name: Camryn Paige Jones
+					➤ Address: 595 Stonebriar Way SW Atlanta GA 30331
+                    ➤ Age: 24
+					➤ Gender: Female
+					
+					
+                    ➤ Number: (404) 257-6521
+                               └── (248) 594-9181
+							       (856) 258-4439
+								   (706) 549-4264
+								   (404) 629-2846
+								   (856) 232-8981
+								   (856) 346-1310
+								   (404) 828-7747
+								   
+					➤ Emails Address: 
+                                      └── camrynjones10@gmail.com
+
+                    ➤ Also Known As: Camryn Jones 
+                                      Rhonda Jones	
+                                      Camryn R Jones									 
+                                      Rhonda L Jones
+    
+	
+                    ➤ Full Name: Almarie S Jones
+					➤ Address: 730 Wyngate Rd Somerdale NJ 08083
+                    ➤ Age: 76
+                    ➤ Number: (856) 346-1310
+                               └── (856) 952-8382
+							       (856) 258-4439
+								    (609) 346-1310
+									
+					➤ Also Known As: Robert B Jones 
+                                      Robert L Jones	
+                                      Bob S Jones Sr									 
+                                      Robt S Jones
+									  
+                    ➤ Email Addresses: 
+                                              └── rjones8408@aol.com
+                                                        └── rjones8408@rcn.com
+														    rjones8408@nj.rr.com
+															rjones8408@msn.com
+															ajones@gccnj.edu
+					
+                    ➤ Breaches: 
+                                              └── Passwords: 
+                                                        └── Doctorbj
+														    dortorbj
+															rgEW9ANFrPS9Y
+															ajones2
+                                                            Jones	
+															
+                    ➤ Full Name: Robert S Jones Sr
+					➤ Age: 77
+					➤ Gender: Male
+					➤ Address: 730 Wyngate Rd Somerdale NJ 08083
+                    
+					➤ Emails Addresses: 
+                                       └── rjones8408@aol.com
+                                          └── robertj1685@yahoo.com
+									          ajones@discounttireco.com
+								              hailmary88@aol.com
+										      ddozen@aol.com 
+											  
+					➤ Full Name: Derek L Jones					  
+					➤ Age: 46
+                    ➤ Gender: Male
+                    ➤ Address: 1016 Noble Pl Sewell NJ 08080					
+					
+					➤ Numbers: (856) 553-6187
+                               └── (856) 258-4439
+							       (609) 433-0826
+								   (856) 346-1310
+								   (856) 952-8382
+								   
+					➤ Email Address: 
+                                      └── ddozen22@cox.net
+                                       └── ddozen22@netscape.net
+									 
+					➤ Also Known As: Derek Jones Sr 
+                                      L Jones Derek Sr	
+                                      Derek Jones
+
+									  
+					➤ Full Name: Anthony Jones										
+					➤ Current Address: 9 Sweezy Ave Highland Falls NY 10928									
+					➤ Age: 56
+                    ➤ Gender: Male		
+					
+					➤ Also Known As: Tony Jones
+					
+					➤ Numbers: (770) 909-9086
+                               └── (404) 629-0461
+							       (845) 480-2213
+								   (845) 446-5176
+								   
+					➤ Emails Addresses: 
+                                       └── tonysoze40tj@gmail.com
+                                          └── t.soze.boss@gmail.com
+					
+                ╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+                ║ $ynce  ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓ [ 1x08 Credits ] ║
+                ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+
+                   Coco  ➤ https://guns.lol/ayti
+				   Zay   ➤ https://guns.lol/Vyrq
+                
+				╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+                ║ $ynce  ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓ [ 1x08 Credits ] ║
+                ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+		                         _______________ ________ __ _/)_. ____________ ______
+    		   	              (_____________________________\\_))___________________)
+    			             ,'           .     _____________|//_____               `
+   			            ,                    |           '..'    |                `.
+   			           /                 .   | Dylan Ramon Jones |                   \
+  			         ,'                  .   |  ___ WANTED ____  |                    `.
+  			        /                        | |    .-.        | |     :                \
+  			       ;                    o    | |   _|_|_     .'| |    :   ./)            :
+ 			       ;                     o   | |   d|"|b    / || |     ./'\  '<          :
+ 			      /                     O  _ | |   .'_'.  .'  || |   o  `'/-\`            \
+ 			     ;                  (\.   (_)| |  ( (_) )/    || |  o    ./)               :
+ 			     |              (\.'  /`Oo   | |.--'-O-'/-.   || |   O oo\  './)           |
+ 			     |               >   |   )   | ||     /   |   || |  . /_  | .'\)           |
+			     |              (/'.  \ <    | ||\_/"3  | |   c| | .   `'/-\               ;
+ 			     :                  /-\`     | |\  /`   | |    | |  o                      :
+ 			      \                          | ||'`-----' |    | | _ O                    /
+			       :                         | |_______________| |(_) ,/)                ;
+ 			       :             )       .   |       $ynce       |  Oo\  './)            ;
+ 			        \           (   )   :    |  REWARD $100,000  | (   |   <            /
+			         `.          ))((    o   |___________________|  >./  .'\)         ,'
+			           \        ((  )   o            |//     _        /-\            /
+ 			            `.       ) ( (               ||_ (\  ))                    ,'
+ 			              `.    ((  ) )           .-".( '.\\((                   ,'
+  			               `. ..)|.\|''__---___--''''''-`---```.....---mx.''''.-
+			                  `-.::::'                .:::''       ---      ,-'
+			                      `--.-------------------------    -------.-'
+ 			                        (_____________________________________)
+
+</pre>
+</div>
+
+    <script>
+        // === RED FALLING DOS SNOW ===
+        const canvas = document.getElementById('snowCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const characters = ['●', '■', '◆', '0', '1', '▓', '▒', '█', '•', '◉', '▮'];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 8 + 4;
+                this.speed = Math.random() * 3.5 + 1.8;
+                this.char = characters[Math.floor(Math.random() * characters.length)];
+                this.opacity = Math.random() * 0.7 + 0.4;
+                this.angle = Math.random() * 360;
+                this.wobble = Math.random() * 0.6 + 0.4;
+            }
+            update() {
+                this.y += this.speed;
+                this.angle += 1.2;
+                this.x += Math.sin(this.angle * 0.04) * this.wobble;
+                if (this.y > canvas.height + 30) this.reset();
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = '#ff4444';
+                ctx.shadowColor = '#ff0000';
+                ctx.shadowBlur = 15;
+                ctx.font = `${this.size}px Courier New`;
+                ctx.fillText(this.char, this.x, this.y);
+                ctx.restore();
+            }
+        }
+
+        function initParticles(count) {
+            particles = [];
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.18)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        initParticles(220);
+        animate();
+    </script>
+</body>
+</html>
