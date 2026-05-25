@@ -1,1 +1,276 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$ynce</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        background: #0a0a0a;
+        color: white;
+        font-family: 'Courier New', monospace;
+        overflow: hidden;
+        height: 100vh;
+        position: relative;
+    }
+
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        box-shadow: inset 0 0 80px rgba(255,255,255,0.15),
+                    inset 0 0 160px rgba(255,255,255,0.08);
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    canvas {
+        position: absolute;
+        top: 0; left: 0;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .content {
+        position: relative;
+        z-index: 3;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-top: 60px;
+    }
+
+    h1 {
+        font-size: 62px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 8px;
+        text-shadow: 0 0 20px #ffffff,
+                     0 0 40px #ffffff,
+                     0 0 60px #ff3333;
+    }
+
+    /* IMPROVED TEXT BOX - Better for ASCII & pasted text */
+    .text-box {
+        width: 780px;                    /* Slightly wider for your ASCII */
+        max-height: 55vh;
+        background: rgba(0, 0, 0, 0.8);
+        border: 2px solid #ff3333;
+        box-shadow: 0 0 30px #ff3333,
+                    0 0 60px rgba(255, 50, 50, 0.4);
+        padding: 25px;
+        overflow-y: auto;
+        text-align: left;
+        line-height: 1.55;
+        font-size: 15px;
+        color: #ffdddd;
+        scrollbar-width: thin;
+        scrollbar-color: #ff4444 #222;
+        white-space: pre-wrap;           /* Important */
+        word-break: break-all;
+        font-family: 'Courier New', monospace;
+    }
+
+    .text-box::-webkit-scrollbar {
+        width: 8px;
+    }
+    .text-box::-webkit-scrollbar-thumb {
+        background: #ff4444;
+        border-radius: 10px;
+    }
+</style>
+	
+</head>
+<body>
+
+    <!-- Red Falling DOS Snow -->
+    <canvas id="snowCanvas"></canvas>
+
+    <div class="content">
+        <h1>$YNCE</h1>
+
+        <audio id="bgMusic" autoplay loop>
+        <source src="https://codehs.com/uploads/a273962643d239acca5fc8e16d8efd72" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+
+        <!-- SCROLLABLE TEXT BOX -->
+        <div class="text-box">
+            <h2>Aili diebolds little dox</h2>
+      <pre>
+
+
+                       Zay        Coco 
+                      /^--^\     /^--^\     
+                      \____/     \____/        
+                     /      \   /      \  
+                    |        | |        | 
+                     \__  __/   \__  __/  
+|^|^|^|^|^|^|^|^|^|^|^|^\ \^|^|^|^/ /^|^
+| | | | | | | | | | | | |\ \| | |/ /| |
+########################/ /######\ \### 
+|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_| 
+
+
+ Reason: Claiming "Harm" Age playing threated to call police on Zay LOL
+
+⣿⠲.⠤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣸⡏⠀⠀⠀⠉⠳⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣿⠀⠀⠀⠀⠀⠀⠀⠉⠲⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⢰⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠲⣄⠀⠀⠀⡰⠋⢙⣿⣦⡀⠀⠀⠀⠀⠀
+⠸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣙⣦⣮⣤⡀⣸⣿⣿⣿⣆⠀⠀⠀⠀
+⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⠀⣿⢟⣫⠟⠋⠀⠀⠀⠀
+⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣷⣷⣿⡁⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⢸⣿⣿⣧⣿⣿⣆⠙⢆⡀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢾⣿⣤⣿⣿⣿⡟⠹⣿⣿⣿⣿⣷⡀⠀⠀ zay
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣧⣴⣿⣿⣿⣿⠏⢧⠀⠀    Coco
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠈⢳⡀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡏⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⢳
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠸⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀
+  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡇⢠⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠃⢸⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣼⢸⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⢸⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠛⠻⠿⣿⣿⣿⡿⠿⠿⠿⠿⠿⢿⣿⣿⠏
+
+  BASIC INFORMATION
+╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+ * Name: Aili Diebold                                                         
+ * Age: 12                                                   
+ * Address: 130 Harting Ridge Rd, West Paducah KY               
+ * Phone Number: 270 556 9775                                                              
+ * Online Name: Loli
+ ╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+  FAMILY INFORMATION
+  ╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ 
+   * Mother Name: Jana Vandermark                                                  
+   * [DOB] Date of Birth: 11/01/79                                            
+   * Age: 46                                                          
+   * Current Address: 1000 Glendale Dr Dickson TN 37055                                                
+   * Previous Address: 205 Warrior Dr, Unit 10 — Murfreesboro TN 37128                                              
+   1607 Allston Dr — Murfreesboro TN 37128 
+   * Father Name: Aaron Diebold                                       
+   * Age: 32                                          
+   * Current Employment: Title: TIER 2 SUPPORT ANALYST                                                              
+   * Current Address: 5309 Village Way Nashville TN 37211                                                  
+   * Previous Address: 109 Peak Hill Cir Nashville TN 37211  
+   4829 Corning Dr Nashville TN 37211
+   130 Harting Ridge Rd West Paducah KY 42086
+   5353 Village Way Nashville TN 37211
+   405 Cottonwood Dr Brownsville TN 38012  	
+   Grandma 
+   Number-(731) 780-3984
+   Pam G Diebold/grandma AGE 62
+   
+   
+
+ 																								   
+ ╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+                                                              BREACHES FOR Jana Vandermark
+╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════    
+* Email: vandermarkjana@gmail.com                                          
+* Db: specialkspamlist.com                                                      
+* Full Name:Jana Sawyer                                              
+* Ip:69.137.105.149                                                    
+* Email:sawyerjana@yahoo.com                                   
+* Password:adbold                                                       
+* Db Name:myfitnesspal.com
+* Ip: 174.254.120.38
+* Username:anaj28
+* Email:jbrev5@gmail.com
+* Password:leilani04																			   
+╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════  
+This hoe loves zay soooo much btwww https://jumpshare.com/share/GXEh2iOfEbNTnBACpKt9 "no i did not extort her"
+╔══╦═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+$ynce▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░            ░░░░░░░░░░░░░░░░░░░░░░░░░█[            CREDITS        ]█░░▓
+└──┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘ 
+		   	                     ⛤     zay       <-> 	Dox creator	<-> 	https://guns.lol/vyrq
+                                 ⛤     coco      <-> 	Dox creator <->     https://guns.lol/ayti
+╔══╦═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+$ynce▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█[        LOLI / Aili Diebold           ]█░░▓
+└──┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘     
+</pre>
+</div>
+
+    <script>
+        // === RED FALLING DOS SNOW ===
+        const canvas = document.getElementById('snowCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const characters = ['●', '■', '◆', '0', '1', '▓', '▒', '█', '•', '◉', '▮'];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 8 + 4;
+                this.speed = Math.random() * 3.5 + 1.8;
+                this.char = characters[Math.floor(Math.random() * characters.length)];
+                this.opacity = Math.random() * 0.7 + 0.4;
+                this.angle = Math.random() * 360;
+                this.wobble = Math.random() * 0.6 + 0.4;
+            }
+            update() {
+                this.y += this.speed;
+                this.angle += 1.2;
+                this.x += Math.sin(this.angle * 0.04) * this.wobble;
+                if (this.y > canvas.height + 30) this.reset();
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = '#ff4444';
+                ctx.shadowColor = '#ff0000';
+                ctx.shadowBlur = 15;
+                ctx.font = `${this.size}px Courier New`;
+                ctx.fillText(this.char, this.x, this.y);
+                ctx.restore();
+            }
+        }
+
+        function initParticles(count) {
+            particles = [];
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.18)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        initParticles(220);
+        animate();
+    </script>
+</body>
+</html>
