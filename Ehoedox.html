@@ -1,264 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$ynce</title>
-
-    <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-
-        body{
-            background:
-            radial-gradient(circle at bottom,
-            rgba(70,0,0,0.12),
-            transparent 50%),
-            #000;
-
-            color:white;
-
-            font-family:'Courier New', monospace;
-
-            display:flex;
-            flex-direction:column;
-            align-items:center;
-            justify-content:center;
-
-            min-height:100vh;
-
-            overflow:hidden;
-        }
-
-        /* TITLE */
-
-        h1{
-            font-size:48px;
-
-            margin-bottom:50px;
-
-            text-transform:uppercase;
-
-            letter-spacing:6px;
-
-            color:white;
-
-            text-shadow:
-            0 0 8px rgba(255,0,0,0.35),
-            0 0 20px rgba(255,0,0,0.18);
-        }
-
-        /* BUTTON HOLDER */
-
-        .button-container{
-            display:flex;
-            flex-direction:column;
-            gap:18px;
-        }
-
-        /* BUTTONS */
-
-        .glow-button{
-
-            position:relative;
-
-            padding:16px 40px;
-
-            font-size:20px;
-            font-weight:900;
-
-            text-transform:uppercase;
-
-            letter-spacing:2px;
-
-            color:white;
-
-            background:rgba(8,8,8,0.88);
-
-            border:1px solid rgba(255,60,60,0.18);
-
-            border-radius:14px;
-
-            text-decoration:none;
-
-            text-align:center;
-
-            width:320px;
-
-            overflow:hidden;
-
-            transition:
-            transform .22s ease,
-            background .22s ease,
-            box-shadow .22s ease,
-            border .22s ease;
-
-            box-shadow:
-            0 0 6px rgba(255,255,255,0.02),
-            0 8px 18px rgba(120,0,0,0.12);
-        }
-
-        /* SMALL RED UNDERGLOW */
-
-        .glow-button::after{
-
-            content:'';
-
-            position:absolute;
-
-            left:20%;
-            bottom:-6px;
-
-            width:60%;
-            height:10px;
-
-            background:rgba(255,40,40,0.28);
-
-            filter:blur(12px);
-
-            opacity:0.55;
-
-            z-index:-1;
-
-            transition:.25s ease;
-        }
-
-        /* BUTTON HOVER */
-
-        .glow-button:hover{
-
-            transform:translateY(-2px);
-
-            background:rgba(20,0,0,0.92);
-
-            border:1px solid rgba(255,70,70,0.20);
-
-            color:#fff;
-
-            box-shadow:
-            0 0 10px rgba(255,255,255,0.03),
-            0 10px 22px rgba(120,0,0,0.16);
-
-            text-shadow:
-            0 0 6px rgba(255,255,255,0.10);
-        }
-
-        .glow-button:hover::after{
-
-            opacity:0.82;
-
-            filter:blur(14px);
-
-            background:rgba(255,50,50,0.32);
-        }
-
-        /* BACKGROUND AMBIENT GLOW */
-
-        body::before{
-
-            content:'';
-
-            position:fixed;
-
-            bottom:-220px;
-            left:50%;
-
-            transform:translateX(-50%);
-
-            width:900px;
-            height:500px;
-
-            background:radial-gradient(circle,
-            rgba(120,0,0,0.16) 0%,
-            rgba(120,0,0,0.06) 35%,
-            transparent 70%);
-
-            filter:blur(80px);
-
-            pointer-events:none;
-
-            z-index:-2;
-        }
-
-    </style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Doxxes</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Inter, Arial, sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+      background:
+        radial-gradient(circle at top, rgba(255,0,0,0.12), transparent 40%),
+        #050505;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
+      color:white;
+      padding:40px;
+      position:relative;
+    }
+
+    /* Animated Glow */
+    .glow{
+      position:absolute;
+      width:700px;
+      height:700px;
+      background:rgba(255,0,0,0.12);
+      border-radius:50%;
+      filter:blur(120px);
+      animation:float 6s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0px) scale(1);
+      }
+      50%{
+        transform:translateY(-20px) scale(1.05);
+      }
+      100%{
+        transform:translateY(0px) scale(1);
+      }
+    }
+
+    /* Main Container */
+    .container{
+      position:relative;
+      z-index:5;
+      width:100%;
+      max-width:1200px;
+      padding:55px;
+      border-radius:35px;
+      background:rgba(18,18,18,0.82);
+      border:1px solid rgba(255,255,255,0.06);
+      backdrop-filter:blur(18px);
+      box-shadow:
+        0 0 50px rgba(255,0,0,0.12),
+        inset 0 0 1px rgba(255,255,255,0.1);
+    }
+
+    h1{
+      text-align:center;
+      font-size:64px;
+      font-weight:800;
+      letter-spacing:-2px;
+      margin-bottom:15px;
+      background:linear-gradient(to right,#ff7777,#ff0000);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .subtitle{
+      text-align:center;
+      color:#a1a1a1;
+      font-size:17px;
+      line-height:1.7;
+      max-width:850px;
+      margin:0 auto 45px auto;
+    }
+
+    /* Grid */
+    .button-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:24px;
+      perspective:1200px;
+    }
+
+    /* Buttons */
+    .btn{
+      position:relative;
+      overflow:hidden;
+      text-decoration:none;
+      color:white;
+      padding:24px;
+      border-radius:24px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.03),
+          rgba(255,255,255,0.01)
+        );
+      border:1px solid rgba(255,255,255,0.06);
+      backdrop-filter:blur(10px);
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border .25s ease;
+
+      transform-style:preserve-3d;
+
+      box-shadow:
+        0 0 0 rgba(255,0,0,0),
+        inset 0 0 0.5px rgba(255,255,255,0.2);
+    }
+
+    .btn::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        135deg,
+        rgba(255,0,0,0.18),
+        transparent 60%
+      );
+      opacity:0;
+      transition:.25s ease;
+    }
+
+    .btn:hover::before{
+      opacity:1;
+    }
+
+    .btn:hover{
+      border:1px solid rgba(255,0,0,0.45);
+      box-shadow:
+        0 0 30px rgba(255,0,0,0.18);
+    }
+
+    .btn-title{
+      position:relative;
+      z-index:2;
+      font-size:20px;
+      font-weight:700;
+      margin-bottom:8px;
+    }
+
+    .btn-desc{
+      position:relative;
+      z-index:2;
+      color:#8f8f8f;
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .footer{
+      text-align:center;
+      margin-top:40px;
+      color:#666;
+      font-size:14px;
+    }
+
+    @media(max-width:700px){
+      .container{
+        padding:35px;
+      }
+
+      h1{
+        font-size:48px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <h1>$YNCE</h1>
+  <div class="glow"></div>
 
-    <div class="button-container">
+  <div class="container">
 
-        <a href="dasherafn.html" class="glow-button">
-            Dashers Dox
-        </a>
+    <h1>Doxxes</h1>
 
-        <a href="Techgangster.html" class="glow-button">
-            Techgangsters Dox
-        </a>
+    <p class="subtitle">
+      This is our group Synce we are not gang monkeys we hate extortion and want to get rid of pedos of most games if you have been groomed , extorted , ect go to our discord server and talk to us and we will put them on the site and try to get rid of them for good https://discord.gg/SRaBngUyjZ
+    </p>
 
-        <a href="Ageplayr.html" class="glow-button">
-            E-hoe/ageplayer
-        </a>
+    <div class="button-grid">
 
-        <a href="recmil.html" class="glow-button">
-            Recmill
-        </a>
+      <a href="dasherafn.html" class="btn">
+        <div class="btn-title">Dashers Dox</div>
+        <div class="btn-desc">Kid that claims he can swat people and dox people when hes just sitting on his computer using
+       Github tools that are ratted and using a discord nuker that he didnt code himself racist Does nazi 
+        sign in front of 5 yrs old</div>
+      </a>
 
-        <a href="carson.html" class="glow-button">
-            Carson/Dylan jones
-        </a>
+      <a href="carson.html" class="btn">
+        <div class="btn-title">Carsonworld</div>
+        <div class="btn-desc">Dylan Jones a 25 year old man who dates minors while being unemployed with no degree and sits on vrchat dating minors</div>
+      </a>
+
+      <a href="Ageplayr.html" class="btn">
+        <div class="btn-title">Ageplayer</div>
+        <div class="btn-desc">This is Alili Diebold  she claimed harm made threats to dox a 8yr old on top of that tried to call the police on vyrq/me acted like she was in com but she was the cutting bored</div>
+      </a>
+
+      <a href="Techgangster.html" class="btn">
+        <div class="btn-title">Techgangster</div>
+        <div class="btn-desc">Tech gangster is a Women beater,Fake "hacker",pedophile,LARP</div>
+      </a>
+
+      <a href="recmil.html" class="btn">
+        <div class="btn-title">Rec Mill</div>
+        <div class="btn-desc">Rec mill is a group owned by a pedophile and plays with kids in recroom trying to groom them</div>
+      </a>
+
+      <a href="template.html" class="btn">
+        <div class="btn-title">Template</div>
+        <div class="btn-desc">Placeholder page</div>
+      </a>
 
     </div>
 
-    <!-- AUDIO -->
+    <div class="footer">
+      Synce Siencerly 
+    </div>
 
-    <audio id="bgAudio" autoplay loop>
+  </div>
 
-        <source src="https://codehs.com/uploads/953f7bc0b332440505eb59d646f37189" type="audio/mpeg">
+  <script>
+    const buttons = document.querySelectorAll('.btn');
 
-        Your browser does not support the audio element.
+    buttons.forEach(btn => {
 
-    </audio>
+      btn.addEventListener('mousemove', e => {
 
-    <script>
+        const rect = btn.getBoundingClientRect();
 
-        const audio = document.getElementById('bgAudio');
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-        window.addEventListener('load', () => {
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
 
-            audio.volume = 0.6;
+        const rotateX = ((y - centerY) / 12) * -1;
+        const rotateY = (x - centerX) / 12;
 
-            const playPromise = audio.play();
+        btn.style.transform =
+          `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`;
 
-            if (playPromise !== undefined) {
+      });
 
-                playPromise.catch(() => {
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform =
+          'rotateX(0deg) rotateY(0deg) scale(1)';
+      });
 
-                    console.log("Autoplay prevented.");
-
-                    document.querySelectorAll('.glow-button').forEach(btn => {
-
-                        btn.addEventListener('click', () => {
-
-                            audio.play().catch(() => {});
-
-                        }, { once: true });
-
-                    });
-
-                });
-
-            }
-
-        });
-
-    </script>
+    });
+  </script>
 
 </body>
 </html>

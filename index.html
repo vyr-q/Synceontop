@@ -10,6 +10,148 @@ href="https://codehs.com/uploads/b526f2da01a37b3bd2cb1babbdc0e3d2">
 
 <style>
 
+    body{
+    background:
+        radial-gradient(circle at top,
+        rgba(0,140,255,0.18),
+        transparent 40%),
+        #050505;
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+}
+
+
+
+/* PLAYER */
+
+.player{
+    width:420px;
+
+    background:rgba(10,10,10,0.92);
+
+    border:1px solid rgba(0,140,255,0.25);
+
+    border-radius:24px;
+
+    padding:25px;
+
+    box-shadow:
+        0 0 20px rgba(0,140,255,0.25),
+        0 0 60px rgba(0,140,255,0.08);
+
+    backdrop-filter:blur(10px);
+
+    position:relative;
+}
+
+/* TOP RIGHT TEXT BOX */
+
+.player-title{
+    position:absolute;
+
+    top:18px;
+    right:20px;
+
+    font-size:15px;
+    font-weight:700;
+
+    color:#4db8ff;
+
+    padding:8px 14px;
+
+    border-radius:12px;
+
+    background:rgba(0,140,255,0.08);
+
+    border:1px solid rgba(0,140,255,0.25);
+
+    box-shadow:
+        0 0 12px rgba(0,140,255,0.2);
+
+    text-shadow:0 0 10px rgba(0,140,255,0.6);
+}
+
+/* SONG LIST */
+
+.song-list{
+    display:flex;
+    flex-direction:column;
+
+    gap:12px;
+
+    max-height:300px;
+
+    overflow-y:auto;
+
+    padding-right:4px;
+
+    margin-top:45px;
+}
+
+.song{
+    background:#111;
+
+    border:1px solid rgba(0,140,255,0.12);
+
+    border-radius:16px;
+
+    padding:14px 16px;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+}
+
+.song:hover{
+    transform:translateY(-2px);
+
+    border-color:rgba(0,140,255,0.45);
+
+    box-shadow:0 0 15px rgba(0,140,255,0.18);
+}
+
+.song.active{
+    background:#00131f;
+
+    border-color:#009dff;
+
+    box-shadow:0 0 20px rgba(0,140,255,0.25);
+}
+
+.song-name{
+    color:white;
+
+    font-size:16px;
+    font-weight:600;
+}
+
+/* AUDIO PLAYER */
+
+audio{
+    width:100%;
+
+    margin-top:20px;
+
+    opacity:.9;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+    width:5px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#009dff;
+    border-radius:20px;
+}
+
 *{
     margin:0;
     padding:0;
@@ -376,9 +518,256 @@ a::before{
 <body>
 
 <!-- AUDIO -->
-<audio autoplay loop>
-<source src="https://codehs.com/uploads/00c56e8513c73218707be82f6ccd8fd6" type="audio/mpeg">
-</audio>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Custom Media Player</title>
+
+<style>
+
+    .player-title{
+    position:fixed;
+
+    top:20px;
+    right:20px;
+
+    z-index:9999;
+
+    font-size:15px;
+    font-weight:700;
+
+    color:#4db8ff;
+
+    padding:10px 16px;
+
+    border-radius:12px;
+
+    background:rgba(0,140,255,0.08);
+
+    border:1px solid rgba(0,140,255,0.25);
+
+    box-shadow:
+        0 0 15px rgba(0,140,255,0.25);
+
+    text-shadow:
+        0 0 10px rgba(0,140,255,0.7);
+
+    backdrop-filter:blur(8px);
+}
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+        background:#050505;
+        color:white;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:100vh;
+        overflow:hidden;
+    }
+
+    .player{
+        width:420px;
+        background:rgba(20,20,20,0.95);
+        border:1px solid rgba(49, 194, 219, 0.4);
+        border-radius:22px;
+        padding:25px;
+        box-shadow:
+            0 0 25px rgba(75, 126, 221, 0.45),
+            0 0 60px rgba(91, 179, 219, 0.15);
+        backdrop-filter: blur(10px);
+    }
+
+    .title{
+        text-align:center;
+        font-size:28px;
+        font-weight:700;
+        margin-bottom:20px;
+        color:#26559b;
+        text-shadow:0 0 15px rgba(50, 91, 167, 0.8);
+    }
+
+    .song-list{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+        max-height:350px;
+        overflow-y:auto;
+        padding-right:4px;
+    }
+
+    .song{
+        background:#111;
+        border:1px solid rgba(69, 183, 236, 0.25);
+        border-radius:14px;
+        padding:14px 16px;
+        cursor:pointer;
+        transition:0.25s ease;
+    }
+
+    .song:hover{
+        transform:translateY(-2px);
+        border-color:#ff2b2b;
+        box-shadow:0 0 15px rgba(255,0,0,0.35);
+    }
+
+    .song.active{
+        background:#1a0000;
+        border-color:#2f8dcc;
+        box-shadow:0 0 20px rgba(68, 79, 228, 0.4);
+    }
+
+    .song-name{
+        font-size:16px;
+        font-weight:600;
+    }
+
+    audio{
+        width:100%;
+        margin-top:20px;
+        filter:hue-rotate(-20deg);
+    }
+
+    ::-webkit-scrollbar{
+        width:6px;
+    }
+
+    ::-webkit-scrollbar-thumb{
+        background:#3985e7;
+        border-radius:20px;
+    }
+    .player-title{
+    position:fixed;
+
+    top:20px;
+    right:20px;
+
+    z-index:9999;
+
+    font-size:15px;
+    font-weight:700;
+
+    color:#4db8ff;
+
+    padding:10px 16px;
+
+    border-radius:12px;
+
+    background:rgba(0,140,255,0.08);
+
+    border:1px solid rgba(0,140,255,0.25);
+
+    box-shadow:
+        0 0 15px rgba(0,140,255,0.25);
+
+    text-shadow:
+        0 0 10px rgba(0,140,255,0.7);
+
+    backdrop-filter:blur(8px);
+}
+</style>
+</head>
+<body>
+
+<div class="player">
+
+    <div class="title">Media Player</div>
+
+    <div class="song-list" id="songList">
+
+        <!-- ADD SONGS HERE -->
+
+        <div class="song active"
+            data-src="https://codehs.com/uploads/d82345cca31463b9eb13c976bc25ef57">
+            <div class="song-name">my fault by my boi doomed</div>
+        </div>
+
+        <div class="song"
+            data-src="https://codehs.com/uploads/2196dd2a4f98f5e75db74dfb517f2c8b">
+            <div class="song-name">Secrets wifi</div>
+        </div>
+
+        <div class="song"
+            data-src="Music/wifiskeleton - back to my day job.mp3">
+            <div class="song-name">Song 3</div>
+        </div>
+
+        <!-- END SONGS -->
+
+    </div>
+
+    <audio id="audioPlayer" controls autoplay>
+        <source src="https://example.com/song1.mp3" type="audio/mpeg">
+    </audio>
+
+</div>
+<script>
+const player = document.querySelector(".player");
+
+let isDragging = false;
+let offsetX = 0;
+let offsetY = 0;
+
+player.style.position = "fixed";
+player.style.left = "50%";
+player.style.top = "50%";
+player.style.transform = "translate(-50%, -50%)";
+
+player.addEventListener("mousedown", (e) => {
+
+    isDragging = true;
+
+    player.style.transform = "none";
+
+    offsetX = e.clientX - player.offsetLeft;
+    offsetY = e.clientY - player.offsetTop;
+
+    player.style.cursor = "grabbing";
+});
+
+document.addEventListener("mousemove", (e) => {
+
+    if (!isDragging) return;
+
+    player.style.left = `${e.clientX - offsetX}px`;
+    player.style.top = `${e.clientY - offsetY}px`;
+});
+
+document.addEventListener("mouseup", () => {
+
+    isDragging = false;
+
+    player.style.cursor = "grab";
+});
+</script>
+<script>
+    const songs = document.querySelectorAll(".song");
+    const audio = document.getElementById("audioPlayer");
+
+    songs.forEach(song => {
+        song.addEventListener("click", () => {
+
+            songs.forEach(s => s.classList.remove("active"));
+            song.classList.add("active");
+
+            const src = song.getAttribute("data-src");
+
+            audio.src = src;
+            audio.play();
+        });
+    });
+</script>
+
+</body>
+</html>
 
 <!-- SNOW -->
 <canvas id="snowCanvas"></canvas>
@@ -389,13 +778,13 @@ a::before{
 <pre>
    _                          
   | |                        
- / __)_   _ _ __   ___ ___   
- |__ \ | | | '_ \ / __/ _ \  
- (   / |_| | | | | (_|  __/  
-  |_| \__, |_| |_|\___\___|  
+ / __)_   _ _ __    ___ ___   
+ |__ \ | | | '_ \  / __/ _ \  
+ (   / |_| | | | |  (_|  __/  
+  |_| \__, |_| |_| \___\___|  
         __/ |                
        |___/             
-</pre>
+</pre> 
 
 <a href="https://guns.lol/ayti"
 target="_blank"
